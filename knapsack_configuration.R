@@ -23,6 +23,7 @@ config_ga_knapsack <- function(rstudio = TRUE){
   conditional_install("ROI")
   conditional_install("foreach")
   conditional_install("iterators")
+  conditional_install("stringr")
 }
 
 
