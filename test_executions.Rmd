@@ -1,0 +1,15 @@
+---
+title: "Knapsack Problem"
+output: html_notebook
+---
+
+```{r}
+source('knapsack_functions.r')
+```
+
+```{r}
+file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
+crossover_mutation_test(file_name, 0.8)
+
+```
+

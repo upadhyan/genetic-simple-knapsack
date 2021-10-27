@@ -26,8 +26,4 @@ config_ga_knapsack <- function(rstudio = TRUE){
   conditional_install("stringr")
 }
 
-process_file <- function(file_name){
-  #Return size, weights, profit, base time, and optimal solution for each instance 
-}
-
 config_ga_knapsack()
