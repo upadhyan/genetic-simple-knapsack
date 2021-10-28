@@ -267,7 +267,7 @@ varied_mutation_crossover_test<- function(file_name){
                    profit = final_fitness, 
                    weight = final_weight,
                    n = n,
-                   optimal_difference = 1 - (optimal_value- final_fitness)/optimal_value,
+                   optimal_difference = final_fitness/optimal_value,
                    optimal_value = optimal_value,
                    contraint_met = as.logical(final_weight <= c),
                    pop_size = 100,
