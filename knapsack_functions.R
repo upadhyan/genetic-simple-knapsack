@@ -120,15 +120,17 @@ crossover_mutation_test<- function(file_name, crossover){
   df = read.csv(file_name)
   profits <- df[['v']]
   weights <- df[['w']]
-  mutation_values <- seq(.01, .1, length.out = 10)
+  mutation_values <- seq(.01, .2, length.out = 10)
   result_frame <- data.frame(pmutation=double(),
                    profit=double(),
                    weight=double(),
                    n=double(),
                    optimal_difference=double(),
+                   optimal_value = double(),
                    constraint_met = logical(),
                    pop_size = integer(),
                    pcrossover = double(),
+                   pmutation = double(),
                    fitnessCalls = integer()) 
   for(value in mutation_values){
     for(i in 1:30){
@@ -151,6 +153,7 @@ crossover_mutation_test<- function(file_name, crossover){
                  weight = final_weight,
                  n = n,
                  optimal_difference = 1 - (optimal_value- final_fitness)/optimal_value,
+                 optimal_value = optimal_value,
                  contraint_met = as.logical(final_weight <= c),
                  pop_size = 100,
                  pcrossover = crossover,
