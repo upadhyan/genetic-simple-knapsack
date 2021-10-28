@@ -40,6 +40,7 @@ fitness_zero <- function(solution, profit, weights, c){
 }
 
 fitness_constraint_adjust <- function(solution, profit, weights, c){
+  fitness_calls <<- fitness_calls + 1
   weight <- weights %*% solution
   max_profit = sum(profit)
   max_weight = sum(weights)
@@ -127,10 +128,12 @@ crossover_mutation_test<- function(file_name, crossover){
                    optimal_difference=double(),
                    constraint_met = logical(),
                    pop_size = integer(),
-                   pcrossover = double()) 
+                   pcrossover = double(),
+                   fitnessCalls = integer()) 
   for(value in mutation_values){
     for(i in 1:30){
       print(paste0("Current value: ", value))
+      fitness_calls <<-0
       invisible(capture.output(GA <- ga(type = "binary", 
                                         fitness = function(x) fitness_constraint_adjust(x, profits, weights, c), 
                                         nBits = n, 
@@ -147,10 +150,11 @@ crossover_mutation_test<- function(file_name, crossover){
                  profit = final_fitness, 
                  weight = final_weight,
                  n = n,
-                 optimal_difference = final_fitness - optimal_value,
+                 optimal_difference = 1 - (optimal_value- final_fitness)/optimal_value,
                  contraint_met = as.logical(final_weight <= c),
                  pop_size = 100,
-                 pcrossover = crossover)
+                 pcrossover = crossover,
+                 fitnessCalls = fitness_calls)
       result_frame <- rbind(result_frame, t(result))
     }
   }
