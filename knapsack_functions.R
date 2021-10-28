@@ -108,7 +108,7 @@ ratio_prob_mutation <- function(object, parent,weights, profit)
 ########### Testing Functions
 
 ############# Part a
-crossover_mutation_test<- function(file_name, crossover){
+varied_mutation_test<- function(file_name, crossover){
   expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
   crossover = 0.8
   regex_result = str_match(file_name, expression)
