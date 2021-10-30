@@ -282,6 +282,63 @@ varied_mutation_crossover_test<- function(file_name){
 }
 
 
+varied_population_test<- function(file_name, mutation,crossover){
+  expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
+  crossover = 0.8
+  regex_result = str_match(file_name, expression)
+  n = strtoi(regex_result[1,3])
+  c = strtoi(regex_result[1,6])
+  optimal_value = strtoi(regex_result[1,7])
+  instance_type = strtoi(regex_result[1,2])
+  range = strtoi(regex_result[1,4])
+  df = read.csv(file_name)
+  profits <- df[['v']]
+  weights <- df[['w']]
+  pop_values <- sample(25:200,30,TRUE)
+  result_frame <- data.frame(pmutation=double(),
+                             profit=double(),
+                             weight=double(),
+                             n=double(),
+                             optimal_difference=double(),
+                             optimal_value = double(),
+                             constraint_met = logical(),
+                             pop_size = integer(),
+                             pcrossover = double(),
+                             pmutation = double(),
+                             fitnessCalls = integer()) 
+  for(value in pop_values){
+    for(i in 1:30){
+      print(paste0("Current value: ", value))
+      fitness_calls <<-0
+      invisible(capture.output(GA <- ga(type = "binary", 
+                                        fitness = function(x) fitness_constraint_adjust(x, profits, weights, c), 
+                                        nBits = n, 
+                                        popSize = value,
+                                        pcrossover = crossover, 
+                                        pmutation = mutation, 
+                                        maxiter = 1000,
+                                        run = 300)))
+      final_solution = GA@solution[1,]
+      final_fitness = final_solution %*% profits
+      final_weight = final_solution %*% weights
+      rm(GA)
+      result = c(pmutation = mutation,
+                 profit = final_fitness, 
+                 weight = final_weight,
+                 n = n,
+                 optimal_difference = final_fitness/optimal_value,
+                 optimal_value = optimal_value,
+                 contraint_met = as.logical(final_weight <= c),
+                 pop_size = value,
+                 pcrossover = value,
+                 fitnessCalls = fitness_calls)
+      result_frame <- rbind(result_frame, t(result))
+    }
+  }
+  return(result_frame)
+}
+
+
 #summary(GA1)
 
 #solution = c(0,1,1,1,0,1,1,0,0,1)
