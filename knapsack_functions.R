@@ -350,3 +350,22 @@ varied_population_test<- function(file_name, mutation,crossover){
 #  print("bad")
 #}
 
+gabin_raMutation <- function(object, parent, ...)
+{
+  if(gaControl("useRcpp"))
+    gabin_raMutation_Rcpp(object, parent)
+  else
+    gabin_raMutation_R(object, parent)
+}
+
+weighted_mutation <- function(object, parent, weights, profit)
+{
+  prob = weights / profit
+  prob = prob / sum(prob)
+  mutate <- parent <- as.vector(object@population[parent,])
+  n <- length(parent)
+  j <- sample(1:n, size = 1, prob = prob)
+  mutate[j] <- abs(mutate[j]-1)
+  return(mutate)
+}
+
