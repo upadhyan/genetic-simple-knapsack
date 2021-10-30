@@ -284,7 +284,6 @@ varied_mutation_crossover_test<- function(file_name){
 
 varied_population_test<- function(file_name, mutation,crossover){
   expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
-  crossover = 0.8
   regex_result = str_match(file_name, expression)
   n = strtoi(regex_result[1,3])
   c = strtoi(regex_result[1,6])
@@ -330,25 +329,13 @@ varied_population_test<- function(file_name, mutation,crossover){
                  optimal_value = optimal_value,
                  contraint_met = as.logical(final_weight <= c),
                  pop_size = value,
-                 pcrossover = value,
+                 pcrossover = crossover,
                  fitnessCalls = fitness_calls)
       result_frame <- rbind(result_frame, t(result))
     }
   }
   return(result_frame)
 }
-
-
-#summary(GA1)
-
-#solution = c(0,1,1,1,0,1,1,0,0,1)
-#if(solution %*% weights <= c){
-#  print("Good")
-#  print(c)
-#  print(solution %*% weights)
-#} else {
-#  print("bad")
-#}
 
 gabin_raMutation <- function(object, parent, ...)
 {
@@ -369,3 +356,57 @@ weighted_mutation <- function(object, parent, weights, profit)
   return(mutate)
 }
 
+modified_mutate_function_test <- function(file_name, mutation,crossover, popsize){
+  expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
+  regex_result = str_match(file_name, expression)
+  n = strtoi(regex_result[1,3])
+  c = strtoi(regex_result[1,6])
+  optimal_value = strtoi(regex_result[1,7])
+  instance_type = strtoi(regex_result[1,2])
+  range = strtoi(regex_result[1,4])
+  df = read.csv(file_name)
+  profits <- df[['v']]
+  weights <- df[['w']]
+  result_frame <- data.frame(pmutation=double(),
+                             profit=double(),
+                             weight=double(),
+                             n=double(),
+                             optimal_difference=double(),
+                             optimal_value = double(),
+                             constraint_met = logical(),
+                             pop_size = integer(),
+                             pcrossover = double(),
+                             pmutation = double(),
+                             fitnessCalls = integer()) 
+  for(i in 1:30){
+    print(paste0("Iteration ", i))
+    fitness_calls <<-0
+    invisible(capture.output(GA <- ga(type = "binary", 
+                                      fitness = function(x) fitness_constraint_adjust(x, profits, weights, c),
+                                      mutation = function(object, parent, ...) weighted_mutation(object, parent, weights, profits),
+                                      nBits = n, 
+                                      popSize = popsize,
+                                      pcrossover = crossover,
+                                      pmutation = mutation, 
+                                      maxiter = 1000,
+                                      run = 300)))
+    final_solution = GA@solution[1,]
+    final_fitness = final_solution %*% profits
+    final_weight = final_solution %*% weights
+    rm(GA)
+    result = c(pmutation = mutation,
+               profit = final_fitness, 
+               weight = final_weight,
+               n = n,
+               optimal_difference = final_fitness/optimal_value,
+               optimal_value = optimal_value,
+               contraint_met = as.logical(final_weight <= c),
+               pop_size = popsize,
+               pcrossover = crossover,
+               fitnessCalls = fitness_calls)
+    result_frame <- rbind(result_frame, t(result))
+  }
+  return(result_frame)
+}
+
+modified_mutate_function_test("knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv", .1, .1,100)
