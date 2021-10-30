@@ -8,13 +8,69 @@ source('knapsack_functions.r')
 ```
 
 ```{r}
-file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
-mutation_test_results = varied_mutation_test(file_name, 0.8)
+
+for(b in 1:6){
+  if(b == 1){
+    file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
+  }else if(b == 2){
+    file_name = "knapsack_csv/knapPI_11_100_1000_84_25070_43824_0.csv"
+  }else if(b == 3){
+    file_name = "knapsack_csv/knapPI_11_100_1000_65_48518_46822_0.csv"
+  }else if(b == 4){
+    file_name = "knapsack_csv/knapPI_11_100_1000_40_23019_5808_0.csv"
+  }else if(b == 5){
+    file_name = "knapsack_csv/knapPI_11_100_1000_12_7719_8742_0.csv"
+  }else if(b == 6){
+    file_name = "knapsack_csv/knapPI_11_100_1000_97_46329_22872_0.csv"
+  }
+  mutation_test_results = varied_mutation_test(file_name, 0.8)
+  csv_name <- paste0('mutation_test_results','_',b,'.csv') #Write output csv file name
+  write.csv(mutation_test_results, file = csv_name) #Write csv file
+  
+}
 
 ```
 
 ```{r}
-file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
-crossover_test_results = varied_crossover_test(file_name, 0.8)
+for(b in 1:6){
+  if(b == 1){
+    file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
+  }else if(b == 2){
+    file_name = "knapsack_csv/knapPI_11_100_1000_84_25070_43824_0.csv"
+  }else if(b == 3){
+    file_name = "knapsack_csv/knapPI_11_100_1000_65_48518_46822_0.csv"
+  }else if(b == 4){
+    file_name = "knapsack_csv/knapPI_11_100_1000_40_23019_5808_0.csv"
+  }else if(b == 5){
+    file_name = "knapsack_csv/knapPI_11_100_1000_12_7719_8742_0.csv"
+  }else if(b == 6){
+    file_name = "knapsack_csv/knapPI_11_100_1000_97_46329_22872_0.csv"
+  }
+  crossover_test_results = varied_crossover_test(file_name, 0.8)
+  csv_name <- paste0('crossover_test_results','_',b,'.csv') #Write output csv file name
+  write.csv(crossover_test_results, file = csv_name) #Write csv file
+}
+
 ```
 
+```{r}
+
+for(b in 1:6){
+  if(b == 1){
+    file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
+  }else if(b == 2){
+    file_name = "knapsack_csv/knapPI_11_100_1000_84_25070_43824_0.csv"
+  }else if(b == 3){
+    file_name = "knapsack_csv/knapPI_11_100_1000_65_48518_46822_0.csv"
+  }else if(b == 4){
+    file_name = "knapsack_csv/knapPI_11_100_1000_40_23019_5808_0.csv"
+  }else if(b == 5){
+    file_name = "knapsack_csv/knapPI_11_100_1000_12_7719_8742_0.csv"
+  }else if(b == 6){
+    file_name = "knapsack_csv/knapPI_11_100_1000_97_46329_22872_0.csv"
+  }
+  mut_xover_test_results = varied_mutation_crossover_test(file_name) 
+  csv_name <- paste0('mut_xover__test_results','_',b,'.csv') #Write output csv file name
+  write.csv(mut_xover_test_results, file = csv_name) #Write csv file
+}
+```
