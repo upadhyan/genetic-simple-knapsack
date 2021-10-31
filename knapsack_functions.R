@@ -306,7 +306,7 @@ varied_population_test<- function(file_name, mutation,crossover){
                              pmutation = double(),
                              fitnessCalls = integer()) 
   for(value in pop_values){
-    for(i in 1:30){
+    for(i in 1:10){
       print(paste0("Current value: ", value))
       fitness_calls <<-0
       invisible(capture.output(GA <- ga(type = "binary", 
