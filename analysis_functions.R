@@ -212,12 +212,12 @@
   library(effectsize)
   
   ##Read all CSVs
-  analyze_df1 <- read.csv("./a_mut_xover_output/mut_xover__test_results_1.csv") #csv to df
-  analyze_df2 <- read.csv("./a_mut_xover_output/mut_xover__test_results_2.csv") #csv to df
-  analyze_df3 <- read.csv("./a_mut_xover_output/mut_xover__test_results_3.csv") #csv to df
-  analyze_df4 <- read.csv("./a_mut_xover_output/mut_xover__test_results_4.csv") #csv to df
-  analyze_df5 <- read.csv("./a_mut_xover_output/mut_xover__test_results_5.csv") #csv to df
-  analyze_df6 <- read.csv("./a_mut_xover_output/mut_xover__test_results_6.csv") #csv to df
+  analyze_df1 <- read.csv("./a_combined_output/mut_xover__test_results_1.csv") #csv to df
+  analyze_df2 <- read.csv("./a_combined_output/mut_xover__test_results_2.csv") #csv to df
+  analyze_df3 <- read.csv("./a_combined_output/mut_xover__test_results_3.csv") #csv to df
+  analyze_df4 <- read.csv("./a_combined_output/mut_xover__test_results_4.csv") #csv to df
+  analyze_df5 <- read.csv("./a_combined_output/mut_xover__test_results_5.csv") #csv to df
+  analyze_df6 <- read.csv("./a_combined_output/mut_xover__test_results_6.csv") #csv to df
   
   ##Combine all CSVs
   analyze_df <- rbind(analyze_df1, analyze_df2, analyze_df3, analyze_df4, analyze_df5, analyze_df6)
