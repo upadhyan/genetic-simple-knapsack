@@ -1,3 +1,4 @@
+## Environment Configuration
 conditional_install <- function(package_name){
   if(package_name %in% rownames(installed.packages()) == FALSE){
     install.packages(package_name, character.only = TRUE)
@@ -29,16 +30,6 @@ config_ga_knapsack <- function(rstudio = TRUE){
 config_ga_knapsack()
 
 ########### Fitness Functions
-fitness_zero <- function(solution, profit, weights, c){
-  weight <- weights %*% solution
-  if(weight > c){
-    return(0)
-  } else {
-    dot_product <- profit %*% solution
-    return(dot_product)
-  }
-}
-
 fitness_constraint_adjust <- function(solution, profit, weights, c){
   fitness_calls <<- fitness_calls + 1
   weight <- weights %*% solution
@@ -66,42 +57,35 @@ fitness_constraint_adjust <- function(solution, profit, weights, c){
   return(h*max_profit + g)
 }
 ########### Mutation Functions
-sp_mutation <- function(object, parent,weights, profit)
+weighted_mutation <- function(object, parent, weights, profit)
 {
+  prob = weights / profit
+  prob = prob / sum(prob)
   mutate <- parent <- as.vector(object@population[parent,])
   n <- length(parent)
-  j <- sample(1:n, size = 1)
-  mutate[j] <- abs(mutate[j]-1)
-  return(mutate)
-}
-
-weight_prob_mutation <- function(object, parent,weights, profit)
-{
-  mutate <- parent <- as.vector(object@population[parent,])
-  n <- length(parent)
-  j <- sample(1:n, size = 1)
-  mutate[j] <- abs(mutate[j]-1)
-  return(mutate)
-}
-
-profit_prob_mutation <- function(object, parent,weights, profit)
-{
-  mutate <- parent <- as.vector(object@population[parent,])
-  n <- length(parent)
-  j <- sample(1:n, size = 1)
-  mutate[j] <- abs(mutate[j]-1)
-  return(mutate)
-}
-
-ratio_prob_mutation <- function(object, parent,weights, profit)
-{
-  mutate <- parent <- as.vector(object@population[parent,])
-  n <- length(parent)
-  j <- sample(1:n, size = 1)
+  j <- sample(1:n, size = 1, prob = prob)
   mutate[j] <- abs(mutate[j]-1)
   return(mutate)
 }
 ########### Crossover Functions Functions
+favorite_child_xover <- function(object, parents, weights, profits)
+{
+  ## Parents fitness?
+  fitness <- object@fitness[parents]
+  parents <- object@population[parents,,drop = FALSE]
+  n <- ncol(parents)
+  children <- matrix(as.double(NA), nrow = 2, ncol = n)
+  fitnessChildren <- rep(NA, 2) ## NA if children =/= parents
+  prob = fitness / sum(fitness)
+  seq1 = sample(1:2, n, replace = TRUE, prob = prob)
+  seq2 = sample(1:2, n, replace = TRUE, prob = rev(prob))
+  for(i in 1:n){
+    children[1,i] = parents[seq1[i],i]
+    children[2,i] = parents[seq2[i],i]
+  }
+  out <- list(children = children, fitness = fitnessChildren)
+  return(out)
+}
 
 
 
@@ -281,7 +265,7 @@ varied_mutation_crossover_test<- function(file_name){
   return(result_frame)
 }
 
-
+############# Part c
 varied_population_test<- function(file_name, mutation,crossover){
   expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
   regex_result = str_match(file_name, expression)
@@ -306,7 +290,7 @@ varied_population_test<- function(file_name, mutation,crossover){
                              pmutation = double(),
                              fitnessCalls = integer()) 
   for(value in pop_values){
-    for(i in 1:30){
+    for(i in 1:10){
       print(paste0("Current value: ", value))
       fitness_calls <<-0
       invisible(capture.output(GA <- ga(type = "binary", 
@@ -337,25 +321,7 @@ varied_population_test<- function(file_name, mutation,crossover){
   return(result_frame)
 }
 
-gabin_raMutation <- function(object, parent, ...)
-{
-  if(gaControl("useRcpp"))
-    gabin_raMutation_Rcpp(object, parent)
-  else
-    gabin_raMutation_R(object, parent)
-}
-
-weighted_mutation <- function(object, parent, weights, profit)
-{
-  prob = weights / profit
-  prob = prob / sum(prob)
-  mutate <- parent <- as.vector(object@population[parent,])
-  n <- length(parent)
-  j <- sample(1:n, size = 1, prob = prob)
-  mutate[j] <- abs(mutate[j]-1)
-  return(mutate)
-}
-
+############# Part c
 modified_mutate_function_test <- function(file_name, mutation,crossover, popsize){
   expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
   regex_result = str_match(file_name, expression)
@@ -409,4 +375,56 @@ modified_mutate_function_test <- function(file_name, mutation,crossover, popsize
   return(result_frame)
 }
 
-modified_mutate_function_test("knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv", .1, .1,100)
+
+modified_crossover_function_test <- function(file_name, mutation,crossover, popsize){
+  expression = "knapPI_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*)_([0-9]*).csv"
+  regex_result = str_match(file_name, expression)
+  n = strtoi(regex_result[1,3])
+  c = strtoi(regex_result[1,6])
+  optimal_value = strtoi(regex_result[1,7])
+  instance_type = strtoi(regex_result[1,2])
+  range = strtoi(regex_result[1,4])
+  df = read.csv(file_name)
+  profits <- df[['v']]
+  weights <- df[['w']]
+  result_frame <- data.frame(pmutation=double(),
+                             profit=double(),
+                             weight=double(),
+                             n=double(),
+                             optimal_difference=double(),
+                             optimal_value = double(),
+                             constraint_met = logical(),
+                             pop_size = integer(),
+                             pcrossover = double(),
+                             pmutation = double(),
+                             fitnessCalls = integer()) 
+  for(i in 1:30){
+    print(paste0("Iteration ", i))
+    fitness_calls <<-0
+    invisible(capture.output(GA <- ga(type = "binary", 
+                                      fitness = function(x) fitness_constraint_adjust(x, profits, weights, c),
+                                      crossover = function(object, parents, ...) favorite_child_xover(object, parents, weights, profits),
+                                      nBits = n, 
+                                      popSize = popsize,
+                                      pcrossover = crossover,
+                                      pmutation = mutation, 
+                                      maxiter = 1000,
+                                      run = 300)))
+    final_solution = GA@solution[1,]
+    final_fitness = final_solution %*% profits
+    final_weight = final_solution %*% weights
+    rm(GA)
+    result = c(pmutation = mutation,
+               profit = final_fitness, 
+               weight = final_weight,
+               n = n,
+               optimal_difference = final_fitness/optimal_value,
+               optimal_value = optimal_value,
+               contraint_met = as.logical(final_weight <= c),
+               pop_size = popsize,
+               pcrossover = crossover,
+               fitnessCalls = fitness_calls)
+    result_frame <- rbind(result_frame, t(result))
+  }
+  return(result_frame)
+}
