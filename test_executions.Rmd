@@ -120,10 +120,10 @@ for(b in 7:10){
   }else if(b==10){
     file_name = "knapsack_csv/knapPI_11_100_1000_55_30369_25966_0.csv"
   }
-  custom_mutation_test_results = modified_crossover_function_test(file_name, .08,.51, 100) 
-  csv_name <- paste0('custom_mutation_test_results','_',b,'.csv') #Write output csv file name
-  write.csv(custom_mutation_test_results, file = csv_name) #Write csv file
-  rm(custom_mutation_test_results)
+  custom_crossover_test_results = modified_crossover_function_test(file_name, .08,.51, 100) 
+  csv_name <- paste0('custom_crossover_test_results','_',b,'.csv') #Write output csv file name
+  write.csv(custom_crossover_test_results, file = csv_name) #Write csv file
+  rm(custom_crossover_test_results)
 }
 ```
 
@@ -158,3 +158,32 @@ for(b in 1:10){
 ```
 
 
+```{r}
+for(b in 1:10){
+  if(b == 1){
+    file_name = "knapsack_csv/knapPI_11_100_1000_2_900_3990_0.csv"
+  }else if(b == 2){
+    file_name = "knapsack_csv/knapPI_11_100_1000_84_25070_43824_0.csv"
+  }else if(b == 3){
+    file_name = "knapsack_csv/knapPI_11_100_1000_65_48518_46822_0.csv"
+  }else if(b == 4){
+    file_name = "knapsack_csv/knapPI_11_100_1000_40_23019_5808_0.csv"
+  }else if(b == 5){
+    file_name = "knapsack_csv/knapPI_11_100_1000_12_7719_8742_0.csv"
+  }else if(b == 6){
+    file_name = "knapsack_csv/knapPI_11_100_1000_97_46329_22872_0.csv"
+  }else if(b==7){
+    file_name = "knapsack_csv/knapPI_11_100_1000_10_6239_10508_0.csv"
+  }else if(b==8){
+    file_name = "knapsack_csv/knapPI_11_100_1000_28_19591_12137_0.csv"
+  }else if(b==9){
+    file_name = "knapsack_csv/knapPI_11_100_1000_30_8510_33644_0.csv"
+  }else if(b==10){
+    file_name = "knapsack_csv/knapPI_11_100_1000_55_30369_25966_0.csv"
+  }
+  baseline_test_results = baseline_function_test(file_name, .08,.51, 100) 
+  csv_name <- paste0('baseline_test_results','_',b,'.csv') #Write output csv file name
+  write.csv(baseline_test_results, file = csv_name) #Write csv file
+  rm(baseline_test_results)
+}
+```
