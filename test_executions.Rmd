@@ -226,8 +226,53 @@ two_way_analysis_combination("./a_combined_output/mut_xover__test_results_1.csv"
 ```
 
 ```{r}
+new_mutation_xover("./a_baseline_output/baseline_test_results_1.csv",
+                   "./a_baseline_output/baseline_test_results_2.csv",
+                   "./a_baseline_output/baseline_test_results_3.csv",
+                   "./a_baseline_output/baseline_test_results_4.csv",
+                   "./a_baseline_output/baseline_test_results_5.csv",
+                   "./a_baseline_output/baseline_test_results_6.csv",
+                   "./a_baseline_output/baseline_test_results_7.csv",
+                   "./a_baseline_output/baseline_test_results_8.csv",
+                   "./a_baseline_output/baseline_test_results_9.csv",
+                   "./a_baseline_output/baseline_test_results_10.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_1.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_2.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_3.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_4.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_5.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_6.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_7.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_8.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_9.csv",
+                   "./a_custom_mutation_output/custom_mutation_test_results_10.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_1.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_2.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_3.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_4.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_5.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_6.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_7.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_8.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_9.csv",
+                   "./a_custom_crossover_output/custom_crossover_test_results_10.csv")
+                   
+                   
+  
+
+
+
+
 
 ```
+
+```{r}
+var_pop_size("./a_pop_output/pop_test_results_1.csv",
+                   "./a_pop_output/pop_test_results_2.csv",
+                   "./a_pop_output/pop_test_results_3.csv",
+                   "./a_pop_output/pop_test_results_4.csv",
+                   "./a_pop_output/pop_test_results_5.csv",
+                   "./a_pop_output/pop_test_results_6.csv")
 
 ```
 
