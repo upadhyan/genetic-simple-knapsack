@@ -1,12 +1,12 @@
-#one_way_analysis_mutation <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){
+one_way_analysis_mutation <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){
 
   ##Read all CSVs
-  analyze_df1 <- read.csv("./a_mutation_output/mutation_test_results_1.csv") #csv to df
-  analyze_df2 <- read.csv("./a_mutation_output/mutation_test_results_2.csv") #csv to df
-  analyze_df3 <- read.csv("./a_mutation_output/mutation_test_results_3.csv") #csv to df
-  analyze_df4 <- read.csv("./a_mutation_output/mutation_test_results_4.csv") #csv to df
-  analyze_df5 <- read.csv("./a_mutation_output/mutation_test_results_5.csv") #csv to df
-  analyze_df6 <- read.csv("./a_mutation_output/mutation_test_results_6.csv") #csv to df
+  analyze_df1 <- read.csv(csv_file1) #csv to df
+  analyze_df2 <- read.csv(csv_file2) #csv to df
+  analyze_df3 <- read.csv(csv_file3) #csv to df
+  analyze_df4 <- read.csv(csv_file4) #csv to df
+  analyze_df5 <- read.csv(csv_file5) #csv to df
+  analyze_df6 <- read.csv(csv_file6) #csv to df
 
   ##Combine all CSVs
   analyze_df <- rbind(analyze_df1, analyze_df2, analyze_df3, analyze_df4, analyze_df5, analyze_df6)
@@ -101,17 +101,20 @@
   summary(calls.aov)
   
 ##
-#}
+}
 
-#one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){ 
+
+
+
+one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){ 
   
   ##Read all CSVs
-  analyze_df1 <- read.csv("./a_crossover_output/crossover_test_results_1.csv") #csv to df
-  analyze_df2 <- read.csv("./a_crossover_output/crossover_test_results_2.csv") #csv to df
-  analyze_df3 <- read.csv("./a_crossover_output/crossover_test_results_3.csv") #csv to df
-  analyze_df4 <- read.csv("./a_crossover_output/crossover_test_results_4.csv") #csv to df
-  analyze_df5 <- read.csv("./a_crossover_output/crossover_test_results_5.csv") #csv to df
-  analyze_df6 <- read.csv("./a_crossover_output/crossover_test_results_6.csv") #csv to df
+  analyze_df1 <- read.csv(csv_file1) #csv to df
+  analyze_df2 <- read.csv(csv_file2) #csv to df
+  analyze_df3 <- read.csv(csv_file3) #csv to df
+  analyze_df4 <- read.csv(csv_file4) #csv to df
+  analyze_df5 <- read.csv(csv_file5) #csv to df
+  analyze_df6 <- read.csv(csv_file6) #csv to df
   
   ##Combine all CSVs
   analyze_df <- rbind(analyze_df1, analyze_df2, analyze_df3, analyze_df4, analyze_df5, analyze_df6)
@@ -204,20 +207,23 @@
   summary(calls.aov)
   
   ##
-  #}
+  }
 
-  #two_way_analysis <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){
+
+
+
+  two_way_analysis_combination <- function(csv_file1, csv_file2, csv_file3, csv_file4, csv_file5, csv_file6){
   library("gplots")
   library("multcomp")
   library(effectsize)
   
   ##Read all CSVs
-  analyze_df1 <- read.csv("./a_combined_output/mut_xover__test_results_1.csv") #csv to df
-  analyze_df2 <- read.csv("./a_combined_output/mut_xover__test_results_2.csv") #csv to df
-  analyze_df3 <- read.csv("./a_combined_output/mut_xover__test_results_3.csv") #csv to df
-  analyze_df4 <- read.csv("./a_combined_output/mut_xover__test_results_4.csv") #csv to df
-  analyze_df5 <- read.csv("./a_combined_output/mut_xover__test_results_5.csv") #csv to df
-  analyze_df6 <- read.csv("./a_combined_output/mut_xover__test_results_6.csv") #csv to df
+  analyze_df1 <- read.csv(csv_file1) #csv to df
+  analyze_df2 <- read.csv(csv_file2) #csv to df
+  analyze_df3 <- read.csv(csv_file3) #csv to df
+  analyze_df4 <- read.csv(csv_file4) #csv to df
+  analyze_df5 <- read.csv(csv_file5) #csv to df
+  analyze_df6 <- read.csv(csv_file6) #csv to df
   
   ##Combine all CSVs
   analyze_df <- rbind(analyze_df1, analyze_df2, analyze_df3, analyze_df4, analyze_df5, analyze_df6)
@@ -339,5 +345,7 @@
   summary(opt2way.aov)
   calls2way.aov <- aov(fitnessCalls ~ block + pcrossover + pmutation, analyze_df)
   summary(calls2way.aov)
-#}
+}
+
   
+

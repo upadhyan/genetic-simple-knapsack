@@ -5,6 +5,7 @@ output: html_notebook
 
 ```{r}
 source('knapsack_functions.r')
+source('analysis_functions.r')
 ```
 
 ```{r}
@@ -187,3 +188,54 @@ for(b in 1:10){
   rm(baseline_test_results)
 }
 ```
+
+```{r}
+one_way_analysis_mutation("./a_mutation_output/mutation_test_results_1.csv",
+                          "./a_mutation_output/mutation_test_results_2.csv",
+                          "./a_mutation_output/mutation_test_results_3.csv",
+                          "./a_mutation_output/mutation_test_results_4.csv",
+                          "./a_mutation_output/mutation_test_results_5.csv",
+                          "./a_mutation_output/mutation_test_results_6.csv")
+
+
+
+```
+
+```{r}
+one_way_analysis_crossover("./a_crossover_output/crossover_test_results_1.csv",
+                           "./a_crossover_output/crossover_test_results_2.csv",
+                           "./a_crossover_output/crossover_test_results_3.csv",
+                           "./a_crossover_output/crossover_test_results_4.csv",
+                           "./a_crossover_output/crossover_test_results_5.csv",
+                           "./a_crossover_output/crossover_test_results_6.csv")
+
+
+
+
+```
+
+```{r}
+two_way_analysis_combination("./a_combined_output/mut_xover__test_results_1.csv",
+                             "./a_combined_output/mut_xover__test_results_2.csv",
+                             "./a_combined_output/mut_xover__test_results_3.csv",
+                             "./a_combined_output/mut_xover__test_results_4.csv",
+                             "./a_combined_output/mut_xover__test_results_5.csv",
+                             "./a_combined_output/mut_xover__test_results_6.csv")
+
+
+```
+
+```{r}
+
+```
+
+```
+
+
+
+
+
+
+
+
+
