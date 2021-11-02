@@ -459,8 +459,7 @@ one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file
     
     ##Combine all CSVs
     pop_df <- rbind(pop_df1, pop_df2, pop_df3, pop_df4, pop_df5, pop_df6)
-    
-
+   
     plot.default(pop_df$pop_size, pop_df$optimal_difference,
                         main= "Proportion of Optimal Value Obtained by Population Size", 
                         xlab = "Population Size",
