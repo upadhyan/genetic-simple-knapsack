@@ -464,6 +464,9 @@ one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file
                         main= "Proportion of Optimal Value Obtained by Population Size", 
                         xlab = "Population Size",
                         ylab =  "Optimal Difference",
-                        col = 'blue')
+                        col = 'blue',
+                        axes = FALSE)
+    axis(1, at = seq(20, 200, by = 5))
+    axis(2, at = seq(0, 1, by = 0.02))
   }
 
