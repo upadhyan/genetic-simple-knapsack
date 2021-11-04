@@ -29,63 +29,65 @@ one_way_analysis_mutation <- function(csv_file1, csv_file2, csv_file3, csv_file4
   analyze_df <- cbind(analyze_df, blocking_df)
   
   ##For fitness level
-  par(mfrow=c(3,2))
+  par(mfrow=c(2,3))
   boxplot(profit~pmutation, data = analyze_df1, 
-          main="Fitness in Respect to Mutation Rate - Sample 1", 
+          main="Sample 1", 
           ylab="Fitness", 
           xlab="Probability of Mutation")
   boxplot(profit~pmutation, data = analyze_df2, 
-          main="Fitness in Respect to Mutation Rate - Sample 2", 
+          main="Sample 2", 
           ylab="Fitness", 
           xlab="Probability of Mutation",
           ylim = c(43800, 43850))
   boxplot(profit~pmutation, data = analyze_df3, 
-          main="Fitness in Respect to Mutation Rate - Sample 3", 
+          main="Sample 3", 
           ylab="Fitness", 
           xlab="Probability of Mutation",
           ylim = c(35000, 46850))
   boxplot(profit~pmutation, data = analyze_df4, 
-          main="Fitness in Respect to Mutation Rate - Sample 4", 
+          main="Sample 4", 
           ylab="Fitness", 
           xlab="Probability of Mutation")
   boxplot(profit~pmutation, data = analyze_df5, 
-          main="Fitness in Respect to Mutation Rate - Sample 5", 
+          main="Sample 5", 
           ylab="Fitness", 
           xlab="Probability of Mutation")
   boxplot(profit~pmutation, data = analyze_df6, 
-          main="Fitness in Respect to Mutation Rate - Sample 6", 
+          main="Sample 6", 
           ylab="Fitness", 
           xlab="Probability of Mutation")
+  title(main="Fitness in Respect to Mutation Rate",outer=TRUE, line = -34)
   
   fitness.aov <- aov(profit ~ block + pmutation, data = analyze_df)
   summary(fitness.aov)
 
   ##For fitness calls
-  par(mfrow=c(3,2))
+  par(mfrow=c(2,3))
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 1", 
+          main="Sample 1", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 2", 
+          main="Sample 2", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 3", 
+          main="Sample 3", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 4", 
+          main="Sample 4", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 5", 
+          main="Sample 5", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
   boxplot(fitnessCalls~pmutation, data = analyze_df1, 
-          main="Fitness Calls in Respect to Mutation Rate - Sample 6", 
+          main="Sample 6", 
           ylab="Fitness Calls", 
           xlab="Probability of Mutation")
+  title(main="Fitness Calls in Respect to Mutation Rate",outer=TRUE, line = -34)
   
   calls.aov <- aov(fitnessCalls ~ block + pmutation, data = analyze_df)
   summary(calls.aov)
@@ -96,6 +98,7 @@ one_way_analysis_mutation <- function(csv_file1, csv_file2, csv_file3, csv_file4
           main="Optimal Difference in Respect to Mutation Rate", 
           ylab="Optimal Difference", 
           xlab="Probability of Mutation")
+
   
   calls.aov <- aov(optimal_difference ~ pmutation, data = analyze_df) #ANOVA Test
   summary(calls.aov)
@@ -137,61 +140,63 @@ one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file
   analyze_df <- cbind(analyze_df, blocking_df)
   
   ##For fitness level
-  par(mfrow=c(3,2))
+  par(mfrow=c(2,3))
   boxplot(profit~pcrossover, data = analyze_df1, 
-          main="Fitness in Respect to Crossover Rate - Sample 1", 
+          main="Sample 1", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
   boxplot(profit~pcrossover, data = analyze_df2, 
-          main="Fitness in Respect to Crossover Rate - Sample 2", 
+          main="Sample 2", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
   boxplot(profit~pcrossover, data = analyze_df3, 
-          main="Fitness in Respect to Crossover Rate - Sample 3", 
+          main="Sample 3", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
   boxplot(profit~pcrossover, data = analyze_df4, 
-          main="Fitness in Respect to Crossovern Rate - Sample 4", 
+          main="Sample 4", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
   boxplot(profit~pcrossover, data = analyze_df5, 
-          main="Fitness in Respect to Crossover Rate - Sample 5", 
+          main="Sample 5", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
   boxplot(profit~pcrossover, data = analyze_df6, 
-          main="Fitness in Respect to Crossover Rate - Sample 6", 
+          main="Sample 6", 
           ylab="Fitness", 
           xlab="Probability of Crossover")
+  title(main="Fitness in Respect to Crossover Rate",outer=TRUE, line = -34)
   
   fitness.aov <- aov(profit ~ block + pcrossover, data = analyze_df) #ANOVA Test
   summary(fitness.aov)
   
   ##For fitness calls
-  par(mfrow=c(3,2))
+  par(mfrow=c(2,3))
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 1", 
+          main="Sample 1", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 2", 
+          main="Sample 2", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 3", 
+          main="Sample 3", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 4", 
+          main="Sample 4", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 5", 
+          main="Sample 5", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
   boxplot(fitnessCalls~pcrossover, data = analyze_df1, 
-          main="Fitness Calls in Respect to Crossover Rate - Sample 6", 
+          main="Sample 6", 
           ylab="Fitness Calls", 
           xlab="Probability of Crossover")
+  title(main="Fitness Calls in Respect to Crossover Rate",outer=TRUE, line = -34)
   
   calls.aov <- aov(fitnessCalls ~ block + pcrossover, data = analyze_df)
   summary(calls.aov)
@@ -441,8 +446,8 @@ one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file
     
     #optimal_difference
     bx_opt_ttest <- t.test(base_df$optimal_difference, xover_df$optimal_difference, conf.level = 0.99) #t-test
-    #return(bx_opt_ttest)
-    return(summary(xover_df$optimal_difference)) #summary values for mutation optimal difference   
+    return(bx_opt_ttest)
+    #return(summary(xover_df$optimal_difference)) #summary values for mutation optimal difference   
     
     
   }
@@ -468,5 +473,58 @@ one_way_analysis_crossover <- function(csv_file1, csv_file2, csv_file3, csv_file
                         axes = FALSE)
     axis(1, at = seq(20, 200, by = 5))
     axis(2, at = seq(0, 1, by = 0.02))
+  }
+  
+  rand_soln_generation <- function(csv_base1, csv_base2, csv_base3, csv_base4, csv_base5, csv_base6,
+                                   csv_rand1, csv_rand2, csv_rand3, csv_rand4, csv_rand5, csv_rand6){
+    
+    ##Read all CSVs
+    base_df1 <- read.csv(csv_base1) #csv to df
+    base_df2 <- read.csv(csv_base2) #csv to df
+    base_df3 <- read.csv(csv_base3) #csv to df
+    base_df4 <- read.csv(csv_base4) #csv to df
+    base_df5 <- read.csv(csv_base5) #csv to df
+    base_df6 <- read.csv(csv_base6) #csv to df
+    rand_df1 <- read.csv(csv_rand1) #csv to df
+    rand_df2 <- read.csv(csv_rand2) #csv to df
+    rand_df3 <- read.csv(csv_rand3) #csv to df
+    rand_df4 <- read.csv(csv_rand4) #csv to df
+    rand_df5 <- read.csv(csv_rand5) #csv to df
+    rand_df6 <- read.csv(csv_rand6) #csv to df
+    
+    base_df <- rbind(base_df1, base_df2, base_df3, base_df4, base_df5, base_df6)
+    rand_df <- rbind(rand_df1, rand_df2, rand_df3, rand_df4, rand_df5, rand_df6)
+    
+    
+    par(mfrow=c(1,2))
+
+    plot.default(base_df$fitnessCalls, base_df$optimal_difference,
+                 col = ifelse(base_df$contraint_met == 1, 'green', 'red'), 
+                 pch = 1,
+                 xlab = '',
+                 ylab = '',
+                 axes = TRUE)
+    
+    title(main="Base GA",
+          xlab="Function Calls", ylab="Optimal Difference")
+    
+    plot.default(rand_df$fitnessCalls, rand_df$optimal_difference,
+                col = ifelse(rand_df$contraint_met == 1, 'green', 'red'),
+                pch = 5,
+                xlab = '',
+                ylab = '',
+                axes = FALSE)
+                legend(34300, 9.6, legend=c("Constraint Met", "Not Met"),
+                 pch = 5, col = c("green", "red"))
+                
+    axis(1, at = seq(0, 60000, by = 5000))
+    axis(2, at = seq(0, 10, by = 0.25))
+    
+    title(main="Random Sampling",
+          xlab="Function Calls", ylab="Optimal Difference")
+    
+    
+  
+    
   }
 

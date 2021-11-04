@@ -347,3 +347,26 @@ for(b in 1:6){
 
 ```
 
+```{r}
+
+rand_soln_generation("./a_baseline_output/baseline_test_results_1.csv",
+                   "./a_baseline_output/baseline_test_results_2.csv",
+                   "./a_baseline_output/baseline_test_results_3.csv",
+                   "./a_baseline_output/baseline_test_results_4.csv",
+                   "./a_baseline_output/baseline_test_results_5.csv",
+                   "./a_baseline_output/baseline_test_results_6.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_1.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_2.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_3.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_4.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_5.csv",
+                   "./a_all_in_one_output/all_in_one_test_results_6.csv")
+                   
+                   
+                   
+
+
+
+
+
+```
